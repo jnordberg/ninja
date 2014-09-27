@@ -3,8 +3,20 @@
 	"GoVersion": "go1.3",
 	"Deps": [
 		{
+			"ImportPath": "bitbucket.org/ckvist/twilio/twiml",
+			"Rev": "a892cfe732deb76bb4a95213f1d1c0eb61ac32ed"
+		},
+		{
+			"ImportPath": "bitbucket.org/ckvist/twilio/twirest",
+			"Rev": "a892cfe732deb76bb4a95213f1d1c0eb61ac32ed"
+		},
+		{
 			"ImportPath": "github.com/ajg/form",
 			"Rev": "51f3dea6c73899b4cf7bd5a3ade3ad56612d1e50"
+		},
+		{
+			"ImportPath": "gopkg.in/mgo.v2",
+			"Rev": "c9fd3712fbf3e92924c974dce16da2d322508fe2"
 		}
 	]
 }
