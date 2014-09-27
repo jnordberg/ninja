@@ -227,6 +227,9 @@ func callHandler(w http.ResponseWriter, r *http.Request) {
 func staticHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, r.URL.Path[1:])
 }
+func defaultHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "CoffeeNinja at your service")
+}
 
 func main() {
 	rand.Seed(time.Now().UTC().UnixNano())
@@ -255,6 +258,7 @@ func main() {
 	tClient = twirest.NewClient(os.Getenv("TWILIO_SID"), os.Getenv("TWILIO_TOKEN"))
 	fromNumber = os.Getenv("TWILIO_NUMBER")
 
+	http.HandleFunc("/", defaultHandler)
 	http.HandleFunc("/slack", bot.SlackHandler)
 	http.HandleFunc("/call", callHandler)
 	http.HandleFunc("/assets/", staticHandler)
