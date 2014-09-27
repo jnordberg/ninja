@@ -1,1 +1,1 @@
-web: coffeeninja
+web: ninja
