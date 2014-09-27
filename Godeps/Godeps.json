@@ -1,0 +1,5 @@
+{
+	"ImportPath": "coffeeninja",
+	"GoVersion": "go1.3",
+	"Deps": []
+}
