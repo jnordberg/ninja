@@ -22,10 +22,12 @@ func main() {
 
 	Env.TwiClient = twirest.NewClient(Env.Vars.TwilioSID, Env.Vars.TwilioToken)
 
-	Env.NRAgent = gorelic.NewAgent()
-	Env.NRAgent.NewrelicLicense = Env.Vars.NewrelicKey
-	Env.NRAgent.Verbose = Env.Vars.NewrelicDebug
-	Env.NRAgent.Run()
+	if Env.Vars.NewrelicEnable {
+		Env.NRAgent = gorelic.NewAgent()
+		Env.NRAgent.NewrelicLicense = Env.Vars.NewrelicKey
+		Env.NRAgent.Verbose = Env.Vars.NewrelicDebug
+		Env.NRAgent.Run()
+	}
 
 	go SetupDatabase()
 	SetupBot()

@@ -13,19 +13,20 @@ import (
 )
 
 type EnvVars struct {
-	AppURL        string `env:"APP_URL"`
-	ForceColors   bool   `env:"FORCE_COLORS" default:"false"`
-	LogLevel      string `env:"LOG_LEVEL" default:"info"`
-	MongoDB       string `env:"MONGO_DB"`
-	MongoURL      string `env:"MONGOHQ_URL"`
-	ServerPort    string `env:"PORT" default:"3000"`
-	SlackDomain   string `env:"SLACK_DOMAIN"`
-	SlackToken    string `env:"SLACK_TOKEN"`
-	TwilioNumber  string `env:"TWILIO_NUMBER"`
-	TwilioSID     string `env:"TWILIO_SID"`
-	TwilioToken   string `env:"TWILIO_TOKEN"`
-	NewrelicKey   string `env:"NEW_RELIC_LICENSE_KEY"`
-	NewrelicDebug bool   `env:"NEW_RELIC_DEBUG"`
+	AppURL         string `env:"APP_URL"`
+	ForceColors    bool   `env:"FORCE_COLORS" default:"false"`
+	LogLevel       string `env:"LOG_LEVEL" default:"info"`
+	MongoDB        string `env:"MONGO_DB"`
+	MongoURL       string `env:"MONGOHQ_URL"`
+	ServerPort     string `env:"PORT" default:"3000"`
+	SlackDomain    string `env:"SLACK_DOMAIN"`
+	SlackToken     string `env:"SLACK_TOKEN"`
+	TwilioNumber   string `env:"TWILIO_NUMBER"`
+	TwilioSID      string `env:"TWILIO_SID"`
+	TwilioToken    string `env:"TWILIO_TOKEN"`
+	NewrelicKey    string `env:"NEW_RELIC_LICENSE_KEY"`
+	NewrelicDebug  bool   `env:"NEW_RELIC_DEBUG"`
+	NewrelicEnable bool   `env:"NEW_RELIC_ENABLE"`
 }
 
 var Env struct {
