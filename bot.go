@@ -232,7 +232,7 @@ func RemindTimer() {
 	var this_run string = Env.ActiveRun.String()
 	time.AfterFunc(time.Minute*4, func() {
 		if Env.ActiveRun.String() == this_run {
-			Env.Bot.SendMessage(slack.NewMessage("<!channel> 2 minutes remaning, get your orders in!"))
+			Env.Bot.SendMessage(slack.NewMessage("<!channel> 1 minute remaning, get your orders in!"))
 		}
 	})
 }
