@@ -3,6 +3,7 @@ package main
 import (
 	"bitbucket.org/ckvist/twilio/twirest"
 	log "github.com/Sirupsen/logrus"
+	"github.com/yvasiyarov/gorelic"
 	"math/rand"
 	"time"
 )
@@ -20,6 +21,10 @@ func main() {
 	log.SetLevel(level)
 
 	Env.TwiClient = twirest.NewClient(Env.Vars.TwilioSID, Env.Vars.TwilioToken)
+
+	Env.NRAgent = gorelic.NewAgent()
+	Env.NRAgent.NewrelicLicense = Env.Vars.NewrelicKey
+	Env.NRAgent.Run()
 
 	go SetupDatabase()
 	SetupBot()

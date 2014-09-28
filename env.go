@@ -2,6 +2,7 @@ package main
 
 import (
 	"bitbucket.org/ckvist/twilio/twirest"
+	"github.com/yvasiyarov/gorelic"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"ninja/slack"
@@ -23,6 +24,7 @@ type EnvVars struct {
 	TwilioNumber string `env:"TWILIO_NUMBER"`
 	TwilioSID    string `env:"TWILIO_SID"`
 	TwilioToken  string `env:"TWILIO_TOKEN"`
+	NewrelicKey  string `env:"NEW_RELIC_LICENSE_KEY"`
 }
 
 var Env struct {
@@ -32,6 +34,7 @@ var Env struct {
 	Vars      *EnvVars
 	Started   time.Time
 	ActiveRun *bson.ObjectId
+	NRAgent   *gorelic.Agent
 }
 
 func LoadEnv() {
