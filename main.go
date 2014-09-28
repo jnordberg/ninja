@@ -24,6 +24,7 @@ func main() {
 
 	Env.NRAgent = gorelic.NewAgent()
 	Env.NRAgent.NewrelicLicense = Env.Vars.NewrelicKey
+	Env.NRAgent.Verbose = Env.Vars.NewrelicDebug
 	Env.NRAgent.Run()
 
 	go SetupDatabase()

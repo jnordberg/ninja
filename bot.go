@@ -153,6 +153,7 @@ func StartCommand(args ArgMap, user *User, m *slack.IncomingMessage) *slack.Outg
 	run.Id = bson.NewObjectId()
 	run.Runner = user.Id
 	run.Items = []Item{}
+	run.Started = time.Now()
 
 	log.Printf("run %#v", run)
 

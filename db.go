@@ -5,6 +5,7 @@ import (
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"net/url"
+	"time"
 )
 
 type User struct {
@@ -24,9 +25,10 @@ type Item struct {
 }
 
 type Run struct {
-	Id     bson.ObjectId `bson:"_id,omitempty"`
-	Runner bson.ObjectId `bson:"runner"`
-	Items  []Item        `bson:"items"`
+	Id      bson.ObjectId `bson:"_id,omitempty"`
+	Runner  bson.ObjectId `bson:"runner"`
+	Items   []Item        `bson:"items"`
+	Started time.Time     `bson:"started"`
 }
 
 func GetCollection(name string) *mgo.Collection {
