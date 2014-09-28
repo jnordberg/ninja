@@ -167,7 +167,7 @@ func StartCommand(args ArgMap, user *User, m *slack.IncomingMessage) *slack.Outg
 
 	msg := fmt.Sprintf(
 		"<!channel> %s is starting a coffee-run! Type `order <coffee type>` to get yours. "+
-			"You have 10 minutes or until %s writes `done`.",
+			"You have 5 minutes or until %s writes `done`.",
 		user.Name, user.Name,
 	)
 
@@ -190,7 +190,7 @@ func EndRun(user *User) *slack.OutgoingMessage {
 	}
 
 	if user == nil {
-		q := GetCollection("users").Find(bson.M{"user_id": run.Runner})
+		q := GetCollection("users").FindId(run.Runner)
 		if err := q.One(&user); err != nil {
 			log.Panic(err)
 		}
@@ -230,7 +230,7 @@ func EndRun(user *User) *slack.OutgoingMessage {
 
 func RemindTimer() {
 	var this_run string = Env.ActiveRun.String()
-	time.AfterFunc(time.Minute*8, func() {
+	time.AfterFunc(time.Minute*4, func() {
 		if Env.ActiveRun.String() == this_run {
 			Env.Bot.SendMessage(slack.NewMessage("<!channel> 2 minutes remaning, get your orders in!"))
 		}
@@ -238,7 +238,7 @@ func RemindTimer() {
 }
 
 func RunTimer() {
-	time.AfterFunc(time.Minute*10, func() {
+	time.AfterFunc(time.Minute*5, func() {
 		if Env.ActiveRun == nil {
 			log.Info("Run already ended.. nothing to do")
 		} else {
