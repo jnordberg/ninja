@@ -20,10 +20,6 @@
 			"Rev": "51f3dea6c73899b4cf7bd5a3ade3ad56612d1e50"
 		},
 		{
-			"ImportPath": "github.com/rakyll/coop",
-			"Rev": "095866b2ee25c67be0bfcb67b71f7fb1aa9ff34a"
-		},
-		{
 			"ImportPath": "github.com/yvasiyarov/go-metrics",
 			"Rev": "57bccd1ccd43f94bb17fdd8bf3007059b802f85e"
 		},
