@@ -24,6 +24,19 @@
 			"Rev": "095866b2ee25c67be0bfcb67b71f7fb1aa9ff34a"
 		},
 		{
+			"ImportPath": "github.com/yvasiyarov/go-metrics",
+			"Rev": "57bccd1ccd43f94bb17fdd8bf3007059b802f85e"
+		},
+		{
+			"ImportPath": "github.com/yvasiyarov/gorelic",
+			"Comment": "v0.0.6-6-ged461c0",
+			"Rev": "ed461c0552ffe5e4bee53eb23c0edacc13c82555"
+		},
+		{
+			"ImportPath": "github.com/yvasiyarov/newrelic_platform_go",
+			"Rev": "b21fdbd4370f3717f3bbd2bf41c223bc273068e6"
+		},
+		{
 			"ImportPath": "gopkg.in/mgo.v2",
 			"Rev": "c9fd3712fbf3e92924c974dce16da2d322508fe2"
 		}
