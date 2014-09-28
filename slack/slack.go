@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	log "github.com/Sirupsen/logrus"
 	"github.com/ajg/form"
-	"log"
 	"net/http"
 )
 
@@ -36,8 +36,7 @@ type OutgoingMessage struct {
 type Bot struct {
 	Subdomain      string
 	Token          string
-	MessageHandler func(m *IncomingMessage) (*OutgoingMessage, error)
-	Debug          bool
+	MessageHandler func(m *IncomingMessage) *OutgoingMessage
 }
 
 func NewMessage(msg string) *OutgoingMessage {
@@ -73,9 +72,7 @@ func (b *Bot) SendMessage(m *OutgoingMessage) (err error) {
 		return errors.New(fmt.Sprintf("Unexpected response code %d", resp.StatusCode))
 	}
 
-	if b.Debug {
-		log.Printf("[slack] Sent message: %+v", m)
-	}
+	log.Debugf("Sent message: %+v", m)
 
 	return nil
 }
@@ -83,7 +80,7 @@ func (b *Bot) SendMessage(m *OutgoingMessage) (err error) {
 func (b *Bot) SlackHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		http.Error(w, "Method not supported", http.StatusBadRequest)
-		log.Printf("WARN: Got a %s request to slack handler.", r.Method)
+		log.Warnf("Got a %s request to slack handler.", r.Method)
 		return
 	}
 
@@ -91,33 +88,27 @@ func (b *Bot) SlackHandler(w http.ResponseWriter, r *http.Request) {
 	decoder := form.NewDecoder(r.Body)
 	if err := decoder.Decode(&message); err != nil {
 		http.Error(w, "Invalid post body", http.StatusBadRequest)
-		log.Print("WARN: Could not decode slack message: ", err)
+		log.Warn("Could not decode slack message: ", err)
 		return
 	}
 
 	// ignore messages comming from self
 	if message.UserId == "USLACKBOT" {
+		log.Debug("Discarding message from slackbot")
 		return
 	}
 
-	if b.Debug {
-		log.Printf("[slack] Got message: %+v", message)
-	}
+	log.Debugf("Got chat message: %+v", message)
 
 	if b.MessageHandler != nil {
-		response, err := b.MessageHandler(&message)
-		if err != nil {
-			response = ErrorMessage(err)
-		}
+		response := b.MessageHandler(&message)
 		if response != nil {
 			w.Header().Set("Content-Type", "application/json")
 			encoder := json.NewEncoder(w)
 			if err := encoder.Encode(&response); err != nil {
 				panic(err)
 			}
-			if b.Debug {
-				log.Printf("[slack] Sent response: %+v", response)
-			}
+			log.Debugf("Sent response: %+v", response)
 		}
 	}
 }
