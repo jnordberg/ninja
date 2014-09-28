@@ -11,8 +11,17 @@
 			"Rev": "a892cfe732deb76bb4a95213f1d1c0eb61ac32ed"
 		},
 		{
+			"ImportPath": "github.com/Sirupsen/logrus",
+			"Comment": "v0.5.1-29-g3737b32",
+			"Rev": "3737b3267e9df4c78170cf695eb35a984330cd6f"
+		},
+		{
 			"ImportPath": "github.com/ajg/form",
 			"Rev": "51f3dea6c73899b4cf7bd5a3ade3ad56612d1e50"
+		},
+		{
+			"ImportPath": "github.com/rakyll/coop",
+			"Rev": "095866b2ee25c67be0bfcb67b71f7fb1aa9ff34a"
 		},
 		{
 			"ImportPath": "gopkg.in/mgo.v2",
